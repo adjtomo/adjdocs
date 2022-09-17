@@ -52,6 +52,8 @@ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/adjd
 
 **Note**: if your adjDocs repo seems out of date compared to whats on GitHub, its likely because we haven't rebuilt the container since changes have been pushed. See Note A and pulling fresh changes from inside the container.
 
+**Note**: if you want to save the work you did on the container to your local, see Note C below.
+
 #### 5) Edit adjDocs (inside container)
 
 From **inside** the container, you can make edits to adjDocs using the internal Jupyter Notebook system. Any changes you are making will also be made to your local repository. Please be sure the **clear all output** when saving notebooks to the workshop directory. Probably best practice to **run all** before pushing to make sure that there are no bugs.
@@ -101,6 +103,14 @@ ghcr.io/seisscoped/adjtomo   ubuntu20.04   7de5769b1ba7   2 days ago   5.53GB
 [~] $ docker rmi 7de5769b1ba7
 ```
 
+### Note C: Bind mounting other directories
 
+If you also want to save results of your development, you can bind mount a work directory to the container. All of the workshop material is saved (inside the container) at `/home/scoped/work`, so this will be our mount target. On your local, find an working directory \<PATH_TO_WORKDIR> before `docker run`ning your container. You'll also need to replace the path to the adjDocs repository \<PATH_TO_ADJDOCS> on your local in the command below
 
-
+```bash
+docker run -p 8888:8888 \
+    --mount type=bind,source=<PATH_TO_ADJDOCS>,target=/home/scoped/adjdocs \
+    --mount type=bind,source=<PATH_TO_WORKDIR>,target=/home/scoped/work \ 
+    --shm-size=1gb \
+    ghcr.io/seisscoped/adjtomo:ubuntu20.04
+```
