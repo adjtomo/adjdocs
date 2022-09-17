@@ -50,6 +50,8 @@ cd adjdocs
 docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/adjdocs --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04
 ```
 
+**Note**: if your adjDocs repo seems out of date compared to whats on GitHub, its likely because we haven't rebuilt the container since changes have been pushed. See Note A and pulling fresh changes from inside the container.
+
 #### 5) Edit adjDocs (inside container)
 
 From **inside** the container, you can make edits to adjDocs using the internal Jupyter Notebook system. Any changes you are making will also be made to your local repository. Please be sure the **clear all output** when saving notebooks to the workshop directory. Probably best practice to **run all** before pushing to make sure that there are no bugs.
