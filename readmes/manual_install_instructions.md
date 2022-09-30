@@ -32,9 +32,9 @@ conda activate adjtomo
 - Your SPECFEM2D and SPECFEM3D repositories will differ from the workshop versions. This is OK.
 
 ```bash
-# Create an empty working directory. Here we create a 
-mkdir -p /Users/$(whoami)/scoped
-cd /Users/$(whoami)/scoped
+# Create an empty working directory under the Home directory
+mkdir -p $HOME/scoped
+cd $HOME/scoped
 
 # Download the adjTomo software suite
 git clone https://github.com/adjtomo/adjdocs 
@@ -54,15 +54,15 @@ git clone --branch devel --depth=1 https://github.com/geodynamics/specfem3d
 - To confirm this, you should see the prefix '(adjtomo)' on your command line prompt
 
 ```bash
-cd /Users/$(whoami)/scoped/pyatoa 
+cd $HOME/scoped/pyatoa 
 conda install --file requirements.txt -y
 pip install -e . 
 
-cd /Users/$(whoami)/scoped/seisflows 
+cd $HOME/scoped/seisflows 
 conda install --file requirements.txt -y
 pip install -e . 
 
-cd /Users/$(whoami)/scoped/pysep 
+cd $HOME/scoped/pysep 
 conda install --file requirements.txt -y
 pip install -e .
 
@@ -76,11 +76,11 @@ conda install jupyter -y
 - If you do not have these, the install will likely fail. See 'Compiler Note 2' below
 
 ```bash
-cd /Users/$(whoami)/scoped/specfem2d 
+cd $HOME/scoped/specfem2d 
 ./configure FC=gfortran CC=gcc CXX=mpicxx MPIFC=mpif90 --with-mpi
 make all 
 
-cd /Users/$(whoami)/scoped/specfem3d 
+cd $HOME/scoped/specfem3d 
 ./configure FC=gfortran CC=gcc CXX=mpicxx MPIFC=mpif90 --with-mpi 
 make all 
 ```
@@ -115,15 +115,17 @@ brew install openmpi
 - Some relevant links on this procedure incase you are worried  
     - https://www.cocoanetics.com/2012/07/you-dont-need-the-xcode-command-line-tools/
     - https://apple.stackexchange.com/questions/308943/how-do-i-uninstall-the-command-line-tools-for-xcode
-sudo rm -rf /Library/Developer/CommandLineTools
+    
+```bash
+sudo rm -r /Library/Developer/CommandLineTools
 xcode-select --install
-
+```
 
 ## Step 6: Check Installation
-- Run the Day 0 Notebook to make sure things have worked properly
+- Run the Day 0 Notebook inside Jupyter to make sure things have worked properly
 
 ```bash 
-cd /Users/$(whoami)/scoped/adjdocs/workshops/2022-10-05_specfem_users/
+cd $HOME/scoped/adjdocs/workshops/2022-10-05_specfem_users/
 jupyter notebook
 ```
 
