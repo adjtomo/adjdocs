@@ -72,8 +72,8 @@ conda install jupyter -y
 
 ## Step 5: Install SPECFEM
 - The following steps configure and compile SPECFEM2D and SPECFEM3D with MPI
-- Your computer will need a FORTRAN compiler and MPI
-- If you do not have these, the install will likely fail. See 'Compiler Note 1' below
+- Your computer will need a FORTRAN compiler and MPI (see Compiler Note 1 if you are unsure)  
+- If you do not have these, the install will likely fail. See 'Compiler Note 2' below
 
 ```bash
 cd /Users/$(whoami)/scoped/specfem2d 
@@ -86,10 +86,21 @@ make all
 ```
 
 ### Compiler Note 1
+- To check if you have the required compilers, run the following
+- Each statement should return a path to an existing compiler
+- If any return nothing (blank line or immediate return to prompt), see 'Compiler Note 2'  
+
+```bash
+which gcc
+which gfortran
+which mpif90
+```
+
+### Compiler Note 2
 - Only required if you do not have the required FORTRAN compiler or MPI necessary for Step 5
 - We use Mac's native 'Homebrew' to install a FORTRAN compiler and OpenMPI
 - First run the steps here in Note 1 and then **re-attempt** Step 5
-- If things **still** do not work, attempt Note 2
+- If things **still** do not work, attempt 'Compiler Note 3'
 
 ```bash
 brew update
@@ -99,7 +110,7 @@ brew install gfortran
 brew install openmpi
 ```
 
-### Compiler Note 2
+### Compiler Note 3
 - If your FORTRAN compiler **still** does not work you may try removing CommandLineTools
 - Some relevant links on this procedure incase you are worried  
     - https://www.cocoanetics.com/2012/07/you-dont-need-the-xcode-command-line-tools/
@@ -112,6 +123,10 @@ xcode-select --install
 - Run the Day 0 Notebook to make sure things have worked properly
 
 ```bash 
-cd /Users/$(whoami)/scoped/adjdocs/workshops
+cd /Users/$(whoami)/scoped/adjdocs/workshops/2022-10-05_specfem_users/
+jupyter notebook
+```
 
-
+- The 'Jupyter' command will have opened up an interface in your web browser
+- **Click** on `day_0_container_testing.ipynb`
+- **Click** `Run All` which is the $\blacktriangleright\blacktriangleright$ button at the top
