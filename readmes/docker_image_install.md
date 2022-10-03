@@ -11,7 +11,7 @@ For the SPECFEM Users Workshop (Oct. 5-7, 2022)
     - Linux: Type 'terminal' in the system search bar
 
 
->**Note:** You will need to **start Docker Desktop** before running the commands below
+>**Note:** You will need to **start Docker Desktop** before running the commands below, otherwise you will be met with an error message: *Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?*
 
 ## 1A) Instructions for Windows, Linux and Mac Intel Chip
 
