@@ -92,9 +92,9 @@ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work
 ## 3) Run Day 0 Notebook
 
 - Using the navigation bar on the left, click through the following directories  
-- *adjdocs $\rightarrow$ workshops $\rightarrow$ 2022-10-05_specfem_users $\rightarrow$ day_0_container_testing.ipynb*  
+- *adjdocs -> workshops -> 2022-10-05_specfem_users -> day_0_container_testing.ipynb*  
 - This will open up a Jupyter Notebook  
     - **If you have time**, please read through the notebook and execute cells one by one  
-    - **If you just want to test that things work**, please hit 'Run All Cells' ($\blacktriangleright\blacktriangleright$ at the top)  
+    - **If you just want to test that things work**, please click 'Run' -> 'Run All Cells' in the navigation bar at the top  
 - Please note the run time for completing the entire notebook, it should be on the order of 10-20 minutes for a modern computer  
 - Please attend Day 0 of the Workshop (Oct. 4) if you have any trouble with the above instructions
