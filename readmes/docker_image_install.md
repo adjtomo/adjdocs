@@ -88,6 +88,7 @@ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work
 - Please **open** the bottom link (starting with http://127.0.0.1:8888) with a web browser
 - You will be met with the following looking web page  
 
+![JupyterLab](https://user-images.githubusercontent.com/23055374/193501549-8f0d9429-1414-40c7-ad4d-0bdcf8ad6e55.png)
 
 ## 3) Run Day 0 Notebook
 
