@@ -59,7 +59,7 @@ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/adjd
 
 For Mac M1 Chip:  
 ```bash
-docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
+docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/adjdocs --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
 ```
 
 **Note**: if your adjDocs repo seems out of date compared to whats on GitHub, its likely because we haven't rebuilt the container since changes have been pushed. See Note A and pulling fresh changes from inside the container.
