@@ -59,6 +59,7 @@ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/adjd
 
 For Mac M1 Chip:  
 ```bash
+cd adjdocs
 docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/adjdocs --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
 ```
 
