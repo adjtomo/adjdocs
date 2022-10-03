@@ -60,6 +60,7 @@ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work
 
 ## 2) Open JupyterLab (all operating systems)
 
+>**Port Mapping Error Note:** For steps 1A and 1B, if you are already running something on port 8888 (e.g. Jupyter Notebooks), you may fail to execute `docker run`. Please change the port map to something else, e.g., *docker run -p 8889:8888*... and retry Step 1  
 - After running the `docker run` command, you will see some output that ends with a web address, e.g,.
 
 ```bash
