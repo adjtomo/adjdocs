@@ -90,7 +90,18 @@ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work
 
 ![JupyterLab](https://user-images.githubusercontent.com/23055374/193501549-8f0d9429-1414-40c7-ad4d-0bdcf8ad6e55.png)
 
-## 3) Run Day 0 Notebook
+## 3) Update adjDocs
+
+- To get the latest copy of the workshop material we will need to update adjDocs, our documentation repository
+- Please **double click** Terminal (`$_` icon in the 'Other' section) to open up the JupyterLab terminal
+- Run the following command to update adjDocs
+
+```bash
+cd ~/adjdocs
+git pull
+```
+
+## 4) Run Day 0 Notebook
 
 - Using the navigation bar on the left, click through the following directories  
 - *adjdocs -> workshops -> 2022-10-05_specfem_users -> day_0_container_testing.ipynb*  
