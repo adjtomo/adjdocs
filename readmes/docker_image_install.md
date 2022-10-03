@@ -13,7 +13,7 @@ For the SPECFEM Users Workshop (Oct. 5-7, 2022)
 
 ## 1A) Instructions for Windows, Linux and Mac Intel Chip
 
->__NOTE__: Mac M1 Users see 'Instructions for Mac M1 Chip' below!
+>__NOTE__: Mac M1 Users see '1B) Instructions for Mac M1 Chip' below!
 
 Install the Docker Image from GitHub
 ```bash
@@ -21,15 +21,16 @@ docker pull ghcr.io/seisscoped/adjtomo:ubuntu20.04
 ```
 
 To save the results we obtain from inside our container, we will need to mount our local filesystem.  
-**> Please `cd` (change directory) to an empty working directory before running the following command**
+**> Please `cd` (change directory) to an empty working directory (example below)**  
 
 ```bash
-# NOTE: This is only an EXAMPLE code snippet. Please create an appropriate empty working directory on your machine
+# NOTE: This is only an EXAMPLE code snippet. Please create an 
+# appropriate empty working directory on your machine
 mkdir -p ~/Work/specfem_users_workshop
 cd ~/Work/specfem_users_workshop
 ```
 
-Opens JupyterLab based on the Docker Container
+Now run the container to open a JupyterLab instance
 ```bash
 docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04 
 ```
@@ -42,14 +43,15 @@ docker pull --platform arm64 ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
 ```
 
 To save the results we obtain from inside our container, we will need to mount our local filesystem.  
-**> Please `cd` (change directory) to an empty working directory before running the following command**
+**> Please `cd` (change directory) to an empty working directory (example below)**  
 ```bash
-# NOTE: This is only an EXAMPLE code snippet. Please create an appropriate empty working directory on your machine
+# NOTE: This is only an EXAMPLE code snippet. Please create an 
+# appropriate empty working directory on your machine
 mkdir -p ~/Work/specfem_users_workshop
 cd ~/Work/specfem_users_workshop
 ```
 
-Opens JupyterLab based on the Docker Container
+Now run the container to open a JupyterLab instance
 ```bash
 docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
 ```
