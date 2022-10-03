@@ -23,10 +23,16 @@ Steps involved outside the nutshell:
 https://docs.docker.com/get-docker/
 
 #### 2) `docker pull` 
-see: https://github.com/adjtomo/adjdocs/blob/main/workshops/2022-10-05_specfem_users/completed_notebooks/day_0_container_testing.ipynb
+see: https://github.com/adjtomo/adjdocs/blob/main/readmes/docker_image_install.md
 
+For Mac Intel Chip, Linux and Windows:
 ```bash
 docker pull ghcr.io/seisscoped/adjtomo:ubuntu20.04
+```
+
+For Mac M1 Chip:
+```bash
+docker pull --platform arm64 ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
 ```
 
 **Note**: If you are constantly running Docker pull and running out of space, see Notes A and B below.
@@ -45,9 +51,15 @@ git pull https://github.com/adjtomo/adjdocs.git
 
 We want to mount our adjDocs repo **inside** the container so that your local and container are sharing the same repo
 
+For Mac Intel Chip, Linux and Windows:  
 ```bash
 cd adjdocs
 docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/adjdocs --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04
+```
+
+For Mac M1 Chip:  
+```bash
+docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
 ```
 
 **Note**: if your adjDocs repo seems out of date compared to whats on GitHub, its likely because we haven't rebuilt the container since changes have been pushed. See Note A and pulling fresh changes from inside the container.
