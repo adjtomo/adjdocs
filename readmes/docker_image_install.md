@@ -5,11 +5,13 @@ For the SPECFEM Users Workshop (Oct. 5-7, 2022)
 - This Docker Image is ~5.5 GB, workshop material ~2.5 GB; please ensure you have sufficient disk space (10 GB free to be safe)   
 - Please ensure that you have completed these instructions **before** the workshop, to avoid any delays the day of  
 - Please attend Day 0 if you have any trouble with installing Docker, installing the Image, or running the Day 0 notebook  
-
 - These commands will need to be run from your computer's terminal program. To access Terminal,
     - Mac: Type 'terminal' into Spotlight
     - Windows: Type 'powershell' in the system search bar
     - Linux: Type 'terminal' in the system search bar
+
+
+>**Note:** You will need to **start Docker Desktop** before running the commands below
 
 ## 1A) Instructions for Windows, Linux and Mac Intel Chip
 
