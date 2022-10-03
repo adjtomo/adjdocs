@@ -149,6 +149,6 @@ systemctl start docker
 ```
 - You may also need to add your user to a Docker group which has the correct privileges ([see this link](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user))  
 
->__ERROR__: Port is already in use
+>__ERROR__: docker: Error response from daemon: driver failed programming external connectivity on endpoint hopeful_haslett (c3e93dc3530d474e5152cf7ec58d69030da2be534f47fc94bcc6da19177f60f4): Bind for 0.0.0.0:8888 failed: port is already allocated.
 - You likely have another task (e.g., Jupyter Notebooks) running on the port we are trying to specify (8888:8888)
 - Please change the port map to something else, e.g., *docker run -p 8889:8888*... and try again
