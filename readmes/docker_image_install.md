@@ -2,7 +2,7 @@
 For the SPECFEM Users Workshop (Oct. 5-7, 2022)
 
 - The following instructions are meant to **install** a Docker Image, which contains all the software you will need to participate in the workshop    
-- This Docker Image is roughly 5.5 GB, workshop material will take about 2.5 GB. Please ensure you have sufficient disk space (10 GB free to be safe)   
+- This Docker Image is ~5.5 GB, workshop material ~2.5 GB; please ensure you have sufficient disk space (10 GB free to be safe)   
 - Please ensure that you have completed these instructions **before** the workshop, to avoid any delays the day of  
 - Please attend Day 0 if you have any trouble with installing Docker, installing the Image, or running the Day 0 notebook  
 
@@ -93,12 +93,27 @@ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work
 ## 3) Update adjDocs
 
 - To get the latest copy of the workshop material we will need to update adjDocs, our documentation repository
-- Please **double click** Terminal (`$_` icon in the 'Other' section) to open up the JupyterLab terminal
-- Run the following command to update adjDocs
+- Please **double click** Terminal (`$_` icon in the 'Other' section) to open up the JupyterLab terminal  
+- Run the following commands inside the terminal to update adjDocs  
 
 ```bash
 cd ~/adjdocs
 git pull
+```
+
+A successful 'git pull' should result in output that looks something like this:
+
+```bash
+root@2579daf64918:~/adjdocs# git pull
+remote: Enumerating objects: 66, done.
+remote: Counting objects: 100% (44/44), done.
+remote: Compressing objects: 100% (19/19), done.
+remote: Total 66 (delta 23), reused 44 (delta 23), pack-reused 22
+Unpacking objects: 100% (66/66), 2.51 MiB | 1.64 MiB/s, done.
+From https://github.com/adjtomo/adjdocs
+   0b1596a..01da4ca  main       -> origin/main
+...
+root@2579daf64918:~/adjdocs# 
 ```
 
 ## 4) Run Day 0 Notebook
