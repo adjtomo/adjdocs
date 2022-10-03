@@ -53,26 +53,64 @@ git clone --branch devel --depth=1 https://github.com/geodynamics/specfem3d
 - Make sure that you have run the 'conda activate' command in Step 2
 - To confirm this, you should see the prefix '(adjtomo)' on your command line prompt
 
+### Pip Check Note
+- It is possible that Pip can point to your local Pip and not the Conda environment's version  
+- If this is the case, you will need to manually call the Conda environment's version
+- To check your Pip installation, use the 'which' command
+
+```bash
+which pip
+```
+
+- If the path does **not** include the word 'conda' somewhere, you will need to **manually** set your Pip path  
+- i.e., if 'which pip' returned */usr/bin/pip*, then see 'Manual Pip Location Note'  
+- If 'which pip' returned something like *~/miniconda3/envs/adjtomo/bin/pip*, then you are OK and can **skip** to 'Install adjTomo Software'  
+
+### Manual Pip Location Note
+- A quick way of pointing to your Conda environment's version of Pip is to do:
+
+```bash
+which python
+```
+
+- The resulit should point you towards your Conda install
+- e.g., it should look something like '~/miniconda3/envs/adjtomo/bin/python'
+- **Replace** 'python' with 'pip'  
+- e.g., ~/miniconda3/envs/adjtomo/bin/**pip**
+- Anytime Pip is called in the 'Install adjTomo Software' section, replace the word 'pip' with the full path to your Conda environment's Pip
+- *Thanks to Andrea Escandon for troubleshooting this*
+
+
+### Install adjTomo Software
+
 ```bash
 cd $HOME/scoped/pyatoa 
-conda install --file requirements.txt -y
-pip install -e . 
+conda install -n adjtomo --file requirements.txt -y
+pip install -e .  # <- See 'Pip Check Note' before running this
 
 cd $HOME/scoped/seisflows 
-conda install --file requirements.txt -y
-pip install -e . 
+conda install -n adjtomo --file requirements.txt -y
+pip install -e .   # <- See 'Pip Check Note' before running this
 
 cd $HOME/scoped/pysep 
-conda install --file requirements.txt -y
-pip install -e .
+conda install -n adjtomo --file requirements.txt -y
+pip install -e .   # <- See 'Pip Check Note' before running this
 
 # We need Jupyter to run the adjDocs workshop notebooks
-conda install jupyter -y
+conda install -n adjtomo jupyter -y
+```
+
+- To verify your installation, run the following command to list out downloaded packages
+- Check that 'seisflows', 'pyatoa', 'pysep' and 'jupyter' are all on this list
+
+```bash
+conda list
 ```
 
 ## Step 5: Install SPECFEM
 - The following steps configure and compile SPECFEM2D and SPECFEM3D with MPI
-- Your computer will need a FORTRAN compiler and MPI (see Compiler Note 1 if you are unsure)  
+- Your computer will need a FORTRAN compiler and MPI (see Compiler Note 1 if you are unsure)
+- Mac users see 'Apple Xcode Note' below
 - If you do not have these, the install will likely fail. See 'Compiler Note 2' below
 
 ```bash
@@ -84,6 +122,18 @@ cd $HOME/scoped/specfem3d
 ./configure FC=gfortran CC=gcc CXX=mpicxx MPIFC=mpif90 --with-mpi 
 make all 
 ```
+
+### Apple XCode Note
+- **Apple Mac** users will need Xcode to have access to the GNU Compiler Collection (GCC)
+- To check if whether you have Xcode or not, you can do
+
+```bash
+which xcodebuild
+```
+
+- If this command does not return anything, you will need to install Xcode
+- Xcode can be found here: https://developer.apple.com/xcode/
+
 
 ### Compiler Note 1
 - To check if you have the required compilers, run the following
