@@ -117,6 +117,8 @@ From https://github.com/adjtomo/adjdocs
 root@2579daf64918:~/adjdocs# 
 ```
 
+>__NOTE:__ If you have made any changes to the adjDocs repository, the `git pull` command may fail. The easiest way to resolve this is to stop your current container and start a new one. Alternatively you may run `git stash` to hide any changes you have made, before running `git pull`  
+
 ## 4) Run Day 0 Notebook
 
 - Using the navigation bar on the left, click through the following directories  
@@ -152,3 +154,5 @@ systemctl start docker
 >__ERROR__: docker: Error response from daemon: driver failed programming external connectivity on endpoint hopeful_haslett (c3e93dc3530d474e5152cf7ec58d69030da2be534f47fc94bcc6da19177f60f4): Bind for 0.0.0.0:8888 failed: port is already allocated.
 - You likely have another task (e.g., Jupyter Notebooks) running on the port we are trying to specify (8888:8888)
 - Please change the port map to something else, e.g., *docker run -p 8889:8888*... and try again
+- **Note** that you will also have to change the web address that you open in your browser to the new port number (e.g., http://127.0.0.1:8889/lab...)  
+
