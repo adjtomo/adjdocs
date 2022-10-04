@@ -198,15 +198,18 @@ systemctl start docker
 From your **local** machine, please run the following commands to **start** the Docker Container
 
 ## A) Instructions for Windows, Linux and Mac Intel Chip
+You may replace the path given (*~/Work/specfem_users_workshop*) with any **empty** working directory of your choice
 ```bash
-cd <PATH_TO_WORKING_DIRECTORY>
+mkdir -p ~/Work/specfem_users_workshop
+cd ~/Work/specfem_users_workshop
 docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04 
 ```
 
 ## B) Instructions for Mac M1 Chip
-
+You may replace the path given (*~/Work/specfem_users_workshop*) with any **empty** working directory of your choice
 ```bash
-cd <PATH_TO_WORKING_DIRECTORY>
+mkdir -p ~/Work/specfem_users_workshop
+cd ~/Work/specfem_users_workshop
 docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
 ```
 
