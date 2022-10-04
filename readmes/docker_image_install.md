@@ -198,7 +198,7 @@ systemctl start docker
 - Please make sure Docker is **running** before executing the following instructions  
 - From your **local** machine, please run the following commands to **start** the Docker Container
 
-## A) Instructions for Windows, Linux and Mac Intel Chip
+## 1A) Instructions for Windows, Linux and Mac Intel Chip
 You may replace the path given (*~/Work/specfem_users_workshop*) with any **empty** working directory of your choice
 ```bash
 mkdir -p ~/Work/specfem_users_workshop
@@ -206,7 +206,7 @@ cd ~/Work/specfem_users_workshop
 docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04 
 ```
 
-## B) Instructions for Mac M1 Chip
+## 1B) Instructions for Mac M1 Chip
 You may replace the path given (*~/Work/specfem_users_workshop*) with any **empty** working directory of your choice
 ```bash
 mkdir -p ~/Work/specfem_users_workshop
@@ -214,7 +214,16 @@ cd ~/Work/specfem_users_workshop
 docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
 ```
 
-Please **open** the link starting with http://127.0.0.1:8888 in a web browser
+Now please **open** the link starting with http://127.0.0.1:8888 in a web browser
 
+## 2) Update adjDocs
 
+- To get the latest copy of the workshop material we will need to update adjDocs, our documentation repository
+- Please **double click** Terminal (`$_` icon in the 'Other' section) to open up the JupyterLab terminal  
+- Run the following commands inside the terminal to update adjDocs  
+
+```bash
+cd ~/adjdocs
+git pull
+```
 
