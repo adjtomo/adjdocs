@@ -4,14 +4,13 @@ For the SPECFEM Users Workshop (Oct. 5-7, 2022)
 - The following instructions are meant to **install** a Docker Image, which contains all the software you will need to participate in the workshop    
 - This Docker Image is ~5.5 GB, workshop material ~2.5 GB; please ensure you have sufficient disk space (10 GB free to be safe)   
 - Please ensure that you have completed these instructions **before** the workshop, to avoid any delays the day of  
+- See the troubleshooting notes at the bottom if you run into any issues. If they do not help please attend Day 0  
 - Please attend Day 0 if you have any trouble with installing Docker, installing the Image, or running the Day 0 notebook  
 - These commands will need to be run from your computer's terminal program. To access Terminal,
     - Mac: Type 'terminal' into Spotlight
     - Windows: Type 'powershell' in the system search bar
     - Linux: Type 'terminal' in the system search bar
 
-
->**Note:** You will need to **start Docker Desktop** before running the commands below, otherwise you will be met with an error message: *Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?*
 
 ## 1A) Instructions for Windows, Linux and Mac Intel Chip
 
@@ -60,7 +59,6 @@ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work
 
 ## 2) Open JupyterLab (all operating systems)
 
->**Port Mapping Error Note:** For steps 1A and 1B, if you are already running something on port 8888 (e.g. Jupyter Notebooks), you may fail to execute `docker run`. Please change the port map to something else, e.g., *docker run -p 8889:8888*... and retry Step 1  
 - After running the `docker run` command, you will see some output that ends with a web address, e.g,.
 
 ```bash
@@ -128,3 +126,29 @@ root@2579daf64918:~/adjdocs#
     - **If you just want to test that things work**, please click 'Run' -> 'Run All Cells' in the navigation bar at the top  
 - Please note the run time for completing the entire notebook, it should be on the order of 10-20 minutes for a modern computer  
 - Please attend Day 0 of the Workshop (Oct. 4) if you have any trouble with the above instructions
+
+--------------
+
+# Troubleshooting Notes
+You can disregard this section if you successfully completed steps 1-4 above
+
+>__ERROR:__ *Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?*  
+
+- You need to start Docker or Docker Desktop on your machine. 
+- On **Windows or Mac**, use the search bar to find 'Docker' or 'Docker Desktop'. Open this program and try again  
+- On **Linux** try running:   
+```bash
+systemctl start docker
+```
+
+>__ERROR:__ Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post "...": dial unix /var/run/docker.sock: connect: permission denied
+- Your user does not have the correct permission to access the Docker daemon
+- If you have root privelage on your machine, try running the following:
+```bash
+ sudo chmod 666 /var/run/docker.sock
+```
+- You may also need to add your user to a Docker group which has the correct privileges ([see this link](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user))  
+
+>__ERROR__: docker: Error response from daemon: driver failed programming external connectivity on endpoint hopeful_haslett (c3e93dc3530d474e5152cf7ec58d69030da2be534f47fc94bcc6da19177f60f4): Bind for 0.0.0.0:8888 failed: port is already allocated.
+- You likely have another task (e.g., Jupyter Notebooks) running on the port we are trying to specify (8888:8888)
+- Please change the port map to something else, e.g., *docker run -p 8889:8888*... and try again
