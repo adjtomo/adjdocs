@@ -131,7 +131,7 @@ root@2579daf64918:~/adjdocs#
 
 --------------
 
-> If everything worked and you have successfully completed steps 1-4 above, congratulations! You can disregard everything below.
+> If everything worked and you have successfully completed steps 1-4 above, congratulations! Please disregard everything below.
 
 --------------
 
@@ -189,4 +189,28 @@ systemctl start docker
 - You likely have another task (e.g., Jupyter Notebooks) running on the port we are trying to specify (8888:8888)
 - Please change the port map to something else, e.g., *docker run -p 8889:8888*... and try again
 - **Note** that you will also have to change the web address that you open in your browser to the new port number (e.g., http://127.0.0.1:8889/lab...)  
+
+
+---------------
+
+# Workshop Days 1-3 Startup Procedure
+
+From your **local** machine, please run the following commands to **start** the Docker Container
+
+## A) Instructions for Windows, Linux and Mac Intel Chip
+```bash
+cd <PATH_TO_WORKING_DIRECTORY>
+docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04 
+```
+
+## B) Instructions for Mac M1 Chip
+
+```bash
+cd <PATH_TO_WORKING_DIRECTORY>
+docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
+```
+
+Please **open** the link starting with http://127.0.0.1:8888 in a web browser
+
+
 
