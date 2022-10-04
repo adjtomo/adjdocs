@@ -195,7 +195,7 @@ systemctl start docker
 
 # Workshop Days 1-3 Startup Procedure
 
-- Please make sure Docker is **running** before executing the following insturctions  
+- Please make sure Docker is **running** before executing the following instructions  
 - From your **local** machine, please run the following commands to **start** the Docker Container
 
 ## A) Instructions for Windows, Linux and Mac Intel Chip
