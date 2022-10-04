@@ -147,7 +147,7 @@ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work
     -  `--mount`: binds our local filesystem (in the current working directory) with the **container's internal filesytem** (at location */home/scoped/work* which resides **inside** the container)  
     -  `--shm-size`: tells Docker to give us 1 Gigabyte of shared memory, which is required for MPI processes  
 - Note that the *$(pwd)* argument may not be recognized by your operating system. If so, please see the troubleshooting notes below    
-- You may substitute any durectory for *$(pwd)*, even remote filesystems, as long as they are accessible by your current machine  
+- You may substitute any directory for *$(pwd)*, even remote filesystems, as long as they are accessible by your current machine  
 
 
 ## Troubleshooting Notes
