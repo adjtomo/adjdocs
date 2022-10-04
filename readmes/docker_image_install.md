@@ -31,7 +31,7 @@ mkdir -p ~/Work/specfem_users_workshop
 cd ~/Work/specfem_users_workshop
 ```
 
-Now run the container to open a JupyterLab instance
+Now run the container to open a JupyterLab instance (see notes below for explanation of this command)  
 ```bash
 docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04 
 ```
@@ -52,7 +52,7 @@ mkdir -p ~/Work/specfem_users_workshop
 cd ~/Work/specfem_users_workshop
 ```
 
-Now run the container to open a JupyterLab instance
+Now run the container to open a JupyterLab instance (see notes below for explanation of this command)  
 ```bash
 docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
 ```
@@ -131,8 +131,42 @@ root@2579daf64918:~/adjdocs#
 
 --------------
 
-# Troubleshooting Notes
-You can disregard this section if you successfully completed steps 1-4 above
+> If everything worked and you have successfully completed steps 1-4 above, congratulations! You can disregard everything below.
+
+--------------
+
+## Docker Command Explanation
+
+```bash
+docker pull ghcr.io/seisscoped/adjtomo:ubuntu20.04
+docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04 
+```
+
+- `docker pull` downloads the Docker Image from GitHub  
+- `docker run` launches the container. The flags in the `run` command are:  
+    -  `--mount`: binds our local filesystem (in the current working directory) with the **container's internal filesytem** (at location */home/scoped/work* which resides **inside** the container)  
+    -  `--shm-size`: tells Docker to give us 1 Gigabyte of shared memory, which is required for MPI processes  
+- Note that the *$(pwd)* argument may not be recognized by your operating system. If so, please see the troubleshooting notes below    
+- You may substitute any durectory for *$(pwd)*, even remote filesystems, as long as they are accessible by your current machine  
+
+
+## Troubleshooting Notes
+
+>__ERROR:__ $(pwd) not recognized in `docker run` command of Step 1  
+
+- *$(pwd)* is a Linux command that might not be recognized by all operating systems  
+- Please change the *$(pwd)* to the full path to your current working directory, e.g.,
+
+```bash
+# Note that you will need to substitute <PATH_TO_WORKING_DIR> with your own path
+docker run -p 8888:8888 --mount type=bind,source=<PATH_TO_WORKING_DIR>,target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04 
+```
+
+for example on my own computer this might look like:  
+```bash
+# Do NOT copy-paste this, it is just an example and will not work on your computer
+docker run -p 8888:8888 --mount type=bind,source=/Users/Chow/Work/specfem_users_workshop,target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04 
+```
 
 >__ERROR:__ *Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?*  
 
