@@ -195,7 +195,8 @@ systemctl start docker
 
 # Workshop Days 1-3 Startup Procedure
 
-From your **local** machine, please run the following commands to **start** the Docker Container
+- Please make sure Docker is **running** before executing the following insturctions  
+- From your **local** machine, please run the following commands to **start** the Docker Container
 
 ## A) Instructions for Windows, Linux and Mac Intel Chip
 You may replace the path given (*~/Work/specfem_users_workshop*) with any **empty** working directory of your choice
