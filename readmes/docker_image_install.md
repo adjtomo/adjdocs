@@ -62,7 +62,7 @@ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work
 - After running the `docker run` command, you will see some output that ends with a web address, e.g,.
 
 ```bash
-[bchow@blackbox specfem_users_workshop]$ docker run -p 8888:8888 --mount type=bind,source=(pwd),target=/home/scoped/work ghcr.io/seisscoped/adjtomo:ubuntu20.04              
+[bchow@blackbox specfem_users_workshop]$ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work ghcr.io/seisscoped/adjtomo:ubuntu20.04              
 [I 2022-10-03 02:45:25.543 ServerApp] jupyterlab | extension was successfully linked.
 [I 2022-10-03 02:45:25.548 ServerApp] nbclassic | extension was successfully linked.
 [I 2022-10-03 02:45:25.549 ServerApp] Writing Jupyter server cookie secret to /home/scoped/.local/share/jupyter/runtime/jupyter_cookie_secret
@@ -105,7 +105,18 @@ git pull
 A successful 'git pull' should result in output that looks something like this:
 
 ```bash
-root@2579daf64918:~/adjdocs# git pull
+root@2579daf64918:~/adjdocs#
+Hmm. We’re having trouble finding that site.
+
+We can’t connect to the server at www.google.com.
+
+If you entered the right address, you can:
+
+    Try again later
+    Check your network connection
+    Check that Firefox has permission to access the web (you might be connected but behind a firewall)
+
+ git pull
 remote: Enumerating objects: 66, done.
 remote: Counting objects: 100% (44/44), done.
 remote: Compressing objects: 100% (19/19), done.
@@ -140,6 +151,17 @@ root@2579daf64918:~/adjdocs#
 ```bash
 docker pull ghcr.io/seisscoped/adjtomo:ubuntu20.04
 docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04 
+Hmm. We’re having trouble finding that site.
+
+We can’t connect to the server at www.google.com.
+
+If you entered the right address, you can:
+
+    Try again later
+    Check your network connection
+    Check that Firefox has permission to access the web (you might be connected but behind a firewall)
+
+
 ```
 
 - `docker pull` downloads the Docker Image from GitHub  
