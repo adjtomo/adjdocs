@@ -14,4 +14,4 @@ Some days also have exercises where Users can put their knowledge to work by set
 running their own simulation problems. Exercise solutions are also available.
 
 All notebooks **must** be run inside a Docker container running Jupyter Lab.
-See instructions for installing the Docker container [here](https://github.com/adjtomo/adjdocs/blob/main/readmes/docker_image_install.md)).
+See instructions for installing the Docker container [here](https://github.com/adjtomo/adjdocs/blob/main/readmes/docker_image_install.md).
