@@ -285,7 +285,7 @@ rm -r /home/scoped/work
 docker container prune
 ```
 
-### e) Removing our Docker Image
+### e) Removing Workshop Docker Image
 
 - If you want to **remove** our workshop's Docker Image (which takes up ~5.5GB), you will need to identify the Image ID
 - To do that, you can run
