@@ -249,3 +249,64 @@ cd ~/adjdocs
 git pull
 ```
 
+---------------
+
+# Workshop Shut Down Procedures
+
+Before you approach any of these shut down procedures, please be sure to save any work you might have created, outside of the provided workshop material.  This may include exercise notebooks that you filled out on your own, or files that you may have generated on your own.  
+
+### Removing Files from the *work/* Directory
+
+- If you want to free up memory taken up by our workshop materials, the easiest way is to do it from **inside** the container  
+- **WARNING** This will delete all files created by our workshop notebooks. You will not be able to recover these files  
+- From the *Terminal* **inside** your container, you can run the following commands to remove all the workshop-created files:  
+
+```bash
+rm -r /home/scoped/work
+```
+
+### Closing a Running Container
+
+- From inside the JupyterLab interface, you can **click** `File -> Shut Down` in the top navigation bar  
+- **OR** from the terminal where you ran the `docker run` command (which should still be running), you can type `Ctrl + c` on your keyboard to stop a running session
+
+### Re-opening a Closed Container
+
+- It is possible to re-open a closed container, however we did not do this during the workshop to keep things simpler  
+- You may follow this documentation if you want to re-open a closed container (https://docs.docker.com/engine/reference/commandline/container_start/)
+
+### Deleting Closed Containers
+
+- Although you have closed your container, each container still occupies some memory on your local machine  
+- This can be freed up if you no longer want to access the container's contents  
+- Run the following command to free up memory associated with all closed containers
+
+```bash
+docker container prune
+```
+
+### Removing our Docker Image
+
+- If you want to **remove** our workshop's Docker Image (which takes up ~5.5GB), you will need to identify the Image ID
+- To do that, you can run
+
+```bash
+docker images
+```
+
+- You will be met with a list of available Docker Images. Ours has Repository name: *'ghcr.io/seisscoped/adjtomo'*, and Tag: *'ubuntu20.04'*  
+- You will need to identify the hash value listed under **IMAGE ID** column and run the following command
+
+```bash
+docker rmi <IMAGE_ID>
+```
+
+- **For Example**: To do this on my own machine I would run (DO NOT COPY THE CODE BLOCK BELOW):
+
+```bash
+bchow@tern [~] $ docker images
+REPOSITORY                   TAG           IMAGE ID       CREATED      SIZE
+ghcr.io/seisscoped/adjtomo   ubuntu20.04   6849be2bcfb8   3 days ago   5.56GB
+bchow@tern [~] $ docker rmi 6849be2bcfb8
+```
+
