@@ -18,7 +18,7 @@ For the SPECFEM Users Workshop (Oct. 5-7, 2022)
 
 Install the Docker Image from GitHub
 ```bash
-docker pull ghcr.io/seisscoped/adjtomo:ubuntu20.04
+docker pull ghcr.io/seisscoped/adjtomo:workshop2022
 ```
 
 To save the results we obtain from inside our container, we will need to mount our local filesystem.  
@@ -33,7 +33,7 @@ cd ~/Work/specfem_users_workshop
 
 Now run the container to open a JupyterLab instance (see notes below for explanation of this command)  
 ```bash
-docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04 
+docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:workshop2022
 ```
 
 ## 1B) Instructions for Mac M1 Chip
@@ -62,7 +62,7 @@ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work
 - After running the `docker run` command, you will see some output that ends with a web address, e.g,.
 
 ```bash
-[bchow@blackbox specfem_users_workshop]$ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work ghcr.io/seisscoped/adjtomo:ubuntu20.04              
+[bchow@blackbox specfem_users_workshop]$ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work ghcr.io/seisscoped/adjtomo:workshop2022           
 [I 2022-10-03 02:45:25.543 ServerApp] jupyterlab | extension was successfully linked.
 [I 2022-10-03 02:45:25.548 ServerApp] nbclassic | extension was successfully linked.
 [I 2022-10-03 02:45:25.549 ServerApp] Writing Jupyter server cookie secret to /home/scoped/.local/share/jupyter/runtime/jupyter_cookie_secret
@@ -105,25 +105,17 @@ git pull
 A successful 'git pull' should result in output that looks something like this:
 
 ```bash
-root@2579daf64918:~/adjdocs#
-Hmm. We’re having trouble finding that site.
-
-We can’t connect to the server at www.google.com.
-
-If you entered the right address, you can:
-
-    Try again later
-    Check your network connection
-    Check that Firefox has permission to access the web (you might be connected but behind a firewall)
-
- git pull
-remote: Enumerating objects: 66, done.
-remote: Counting objects: 100% (44/44), done.
-remote: Compressing objects: 100% (19/19), done.
-remote: Total 66 (delta 23), reused 44 (delta 23), pack-reused 22
-Unpacking objects: 100% (66/66), 2.51 MiB | 1.64 MiB/s, done.
+root@9613bff72a41:~/adjdocs# git pull
+remote: Enumerating objects: 345, done.
+remote: Counting objects: 100% (173/173), done.
+remote: Compressing objects: 100% (93/93), done.
+remote: Total 345 (delta 119), reused 120 (delta 80), pack-reused 172
+Receiving objects: 100% (345/345), 29.07 MiB | 22.27 MiB/s, done.
+Resolving deltas: 100% (204/204), completed with 11 local objects.
 From https://github.com/adjtomo/adjdocs
-   0b1596a..01da4ca  main       -> origin/main
+   17378b6..77b2fe6  main       -> origin/main
+Updating 17378b6..77b2fe6
+Fast-forward
 ...
 root@2579daf64918:~/adjdocs# 
 ```
@@ -149,8 +141,8 @@ root@2579daf64918:~/adjdocs#
 ## Docker Command Explanation
 
 ```bash
-docker pull ghcr.io/seisscoped/adjtomo:ubuntu20.04
-docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04 
+docker pull ghcr.io/seisscoped/adjtomo:workshop2022
+docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:workshop2022
 Hmm. We’re having trouble finding that site.
 
 We can’t connect to the server at www.google.com.
@@ -181,13 +173,13 @@ If you entered the right address, you can:
 
 ```bash
 # Note that you will need to substitute <PATH_TO_WORKING_DIR> with your own path
-docker run -p 8888:8888 --mount type=bind,source=<PATH_TO_WORKING_DIR>,target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04 
+docker run -p 8888:8888 --mount type=bind,source=<PATH_TO_WORKING_DIR>,target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:workshop2022
 ```
 
 for example on my own computer this might look like:  
 ```bash
 # Do NOT copy-paste this, it is just an example and will not work on your computer
-docker run -p 8888:8888 --mount type=bind,source=/Users/Chow/Work/specfem_users_workshop,target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04 
+docker run -p 8888:8888 --mount type=bind,source=/Users/Chow/Work/specfem_users_workshop,target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:workshop2022
 ```
 
 >__ERROR:__ *Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?*  
@@ -225,7 +217,7 @@ You may replace the path given (*~/Work/specfem_users_workshop*) with any **empt
 ```bash
 mkdir -p ~/Work/specfem_users_workshop
 cd ~/Work/specfem_users_workshop
-docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04 
+docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:workshop2022
 ```
 
 ## 1B) Instructions for Mac M1 Chip
@@ -294,7 +286,7 @@ docker container prune
 docker images
 ```
 
-- You will be met with a list of available Docker Images. Ours has Repository name: *'ghcr.io/seisscoped/adjtomo'*, and Tag: *'ubuntu20.04'*  
+- You will be met with a list of available Docker Images. Ours has Repository name: *'ghcr.io/seisscoped/adjtomo'*, and Tag: *'workshop2022'*  
 - You will need to identify the hash value listed under **IMAGE ID** column and run the following command
 
 ```bash
@@ -305,8 +297,8 @@ docker rmi <IMAGE_ID>
 
 ```bash
 bchow@tern [~] $ docker images
-REPOSITORY                   TAG           IMAGE ID       CREATED      SIZE
-ghcr.io/seisscoped/adjtomo   ubuntu20.04   6849be2bcfb8   3 days ago   5.56GB
+REPOSITORY                   TAG            IMAGE ID       CREATED      SIZE
+ghcr.io/seisscoped/adjtomo   workshop2022   6849be2bcfb8   3 days ago   5.56GB
 bchow@tern [~] $ docker rmi 6849be2bcfb8
 ```
 
