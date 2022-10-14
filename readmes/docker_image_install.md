@@ -3,23 +3,37 @@ For the SPECFEM Users Workshop (Oct. 5-7, 2022)
 
 - The following instructions are meant to **install** a Docker Image, which contains all the software you will need to participate in the workshop    
 - This Docker Image is ~5.5 GB, workshop material ~2.5 GB; please ensure you have sufficient disk space (10 GB free to be safe)   
-- Please ensure that you have completed these instructions **before** the workshop, to avoid any delays the day of  
-- See the troubleshooting notes at the bottom if you run into any issues. If they do not help please attend Day 0  
-- Please attend Day 0 if you have any trouble with installing Docker, installing the Image, or running the Day 0 notebook  
-- These commands will need to be run from your computer's terminal program. To access Terminal,
+- See the troubleshooting notes at the bottom for common issues you might encounter  
+- If you have any issues running the steps below that are not solved by the troubleshooting notes, feel free to open up a [GitHub issue](https://github.com/adjtomo/adjdocs/issues)
+
+## 0) Open a Terminal
+- The commands in the following sections will need to be run from your computer's terminal program   
+- To open the terminal on your **local machine**: 
     - Mac: Type 'terminal' into Spotlight
     - Windows: Type 'powershell' in the system search bar
     - Linux: Type 'terminal' in the system search bar
 
 
-## 1A) Instructions for Windows, Linux and Mac Intel Chip
+## 1) Pull Docker Image
 
->__NOTE__: Mac M1 Users see '1B) Instructions for Mac M1 Chip' below!
+- This will download the Docker Image from GitHub
+- Mac Intel Chip, Windows and Linux Users (AMD architecture) please follow instructions in 1A
+- Mac M1 Chip (ARM architecture) please follow instructions in 1B
 
-Install the Docker Image from GitHub
+
+### 1A) Docker pull for Mac Intel, Windows, Linux
 ```bash
-docker pull ghcr.io/seisscoped/adjtomo:workshop2022
+docker pull --platform amd64 ghcr.io/seisscoped/adjtomo:workshop2022
 ```
+
+### 1B) Docker pull for Mac M1
+
+Installs the Docker Image from GitHub
+```bash
+docker pull --platform arm64 ghcr.io/seisscoped/adjtomo:workshop2022
+```
+
+## 2) Make Empty Working Directory
 
 To save the results we obtain from inside our container, we will need to mount our local filesystem.  
 **> Please `cd` (change directory) to an empty working directory (example below)**  
@@ -30,38 +44,20 @@ To save the results we obtain from inside our container, we will need to mount o
 mkdir -p ~/Work/specfem_users_workshop
 cd ~/Work/specfem_users_workshop
 ```
+
+## 3) Run Container
 
 Now run the container to open a JupyterLab instance (see notes below for explanation of this command)  
 ```bash
 docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:workshop2022
 ```
 
-## 1B) Instructions for Mac M1 Chip
-
-Installs the Docker Image from GitHub
-```bash
-docker pull --platform arm64 ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
-```
-
-To save the results we obtain from inside our container, we will need to mount our local filesystem.  
-**> Please `cd` (change directory) to an empty working directory (example below)**  
-```bash
-# NOTE: This is only an EXAMPLE code snippet. Please create an 
-# appropriate empty working directory on your machine
-mkdir -p ~/Work/specfem_users_workshop
-cd ~/Work/specfem_users_workshop
-```
-
-Now run the container to open a JupyterLab instance (see notes below for explanation of this command)  
-```bash
-docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
-```
-
-## 2) Open JupyterLab (all operating systems)
+## 4) Open JupyterLab 
 
 - After running the `docker run` command, you will see some output that ends with a web address, e.g,.
 
 ```bash
+# DO NOT COPY THE CODE BLOCK BELOW, it is just an example
 [bchow@blackbox specfem_users_workshop]$ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work ghcr.io/seisscoped/adjtomo:workshop2022           
 [I 2022-10-03 02:45:25.543 ServerApp] jupyterlab | extension was successfully linked.
 [I 2022-10-03 02:45:25.548 ServerApp] nbclassic | extension was successfully linked.
@@ -91,7 +87,7 @@ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work
 
 ![JupyterLab](https://user-images.githubusercontent.com/23055374/193501549-8f0d9429-1414-40c7-ad4d-0bdcf8ad6e55.png)
 
-## 3) Update adjDocs
+## 5) Update adjDocs
 
 - To get the latest copy of the workshop material we will need to update adjDocs, our documentation repository
 - Please **double click** Terminal (`$_` icon in the 'Other' section) to open up the JupyterLab terminal  
@@ -105,6 +101,7 @@ git pull
 A successful 'git pull' should result in output that looks something like this:
 
 ```bash
+# DO NOT COPY THE CODE BLOCK BELOW, it is just an example
 root@9613bff72a41:~/adjdocs# git pull
 remote: Enumerating objects: 345, done.
 remote: Counting objects: 100% (173/173), done.
@@ -122,19 +119,19 @@ root@2579daf64918:~/adjdocs#
 
 >__NOTE:__ If you have made any changes to the adjDocs repository, the `git pull` command may fail. The easiest way to resolve this is to stop your current container and start a new one. Alternatively you may run `git stash` to hide any changes you have made, before running `git pull`  
 
-## 4) Run Day 0 Notebook
+## 6) Run Workshop Material
 
 - Using the navigation bar on the left, click through the following directories  
-- *adjdocs -> workshops -> 2022-10-05_specfem_users -> day_0_container_testing.ipynb*  
-- This will open up a Jupyter Notebook  
-    - **If you have time**, please read through the notebook and execute cells one by one  
-    - **If you just want to test that things work**, please click 'Run' -> 'Run All Cells' in the navigation bar at the top  
-- Please note the run time for completing the entire notebook, it should be on the order of 10-20 minutes for a modern computer  
-- Please attend Day 0 of the Workshop (Oct. 4) if you have any trouble with the above instructions
+- *adjdocs -> workshops -> 2022-10-05_specfem_users*  
+- **Clicking** any of the workshop notebooks (e.g., *day_1a_intro_specfem2d.ipynb*) will open a Jupyter Notebook  
+- See 'Jupyter Quick Tips' at the top of any notebook for information on how to run through a notebook  
+- Run cells one-by-one and sequentially, read along with text to follow workshop material  
+- If encounter any issues running the notebooks, please open up a [GitHub issue](https://github.com/adjtomo/adjdocs/issues)  
+
 
 --------------
 
-> If everything worked and you have successfully completed steps 1-4 above, congratulations! Please disregard everything below.
+> If everything worked and you have successfully completed the steps above, congratulations! Please disregard everything below. If you are having trouble, please see the 'Troubleshooting Notes' section below.  
 
 --------------
 
@@ -212,20 +209,12 @@ systemctl start docker
 - Please make sure Docker is **running** before executing the following instructions  
 - From your **local** machine, please run the following commands to **start** the Docker Container
 
-## 1A) Instructions for Windows, Linux and Mac Intel Chip
+## 1) Start Docker Container
 You may replace the path given (*~/Work/specfem_users_workshop*) with any **empty** working directory of your choice
 ```bash
 mkdir -p ~/Work/specfem_users_workshop
 cd ~/Work/specfem_users_workshop
 docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:workshop2022
-```
-
-## 1B) Instructions for Mac M1 Chip
-You may replace the path given (*~/Work/specfem_users_workshop*) with any **empty** working directory of your choice
-```bash
-mkdir -p ~/Work/specfem_users_workshop
-cd ~/Work/specfem_users_workshop
-docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
 ```
 
 Now please **open** the link starting with http://127.0.0.1:8888 in a web browser
@@ -245,7 +234,9 @@ git pull
 
 # Workshop Shut Down Procedures
 
-Before you approach any of these shut down procedures, please be sure to save any work you might have created, outside of the provided workshop material.  This may include exercise notebooks that you filled out on your own, or files that you may have generated on your own.  
+- These instructions are for when you are finished with the workshop material and want to shut down the container and/or free up space    
+- Before you approach any of these shut down procedures, please be sure to save any work you might have created   
+- 'Created work' may include exercise notebooks that you filled out on your own, or files that you may have generated on your own  
 
 ### a) Removing Files from the *work/* Directory
 
@@ -254,6 +245,7 @@ Before you approach any of these shut down procedures, please be sure to save an
 - From the *Terminal* **inside** your container, you can run the following commands to remove all the workshop-created files:  
 
 ```bash
+# Run the following from inside your container's terminal, not on your local machine
 rm -r /home/scoped/work
 ```
 
@@ -293,9 +285,10 @@ docker images
 docker rmi <IMAGE_ID>
 ```
 
-- **For Example**: To do this on my own machine I would run (DO NOT COPY THE CODE BLOCK BELOW):
+- **For Example**: To do this on my own machine I would run:
 
 ```bash
+# DO NOT COPY THE CODE BLOCK BELOW, it is just an example
 bchow@tern [~] $ docker images
 REPOSITORY                   TAG            IMAGE ID       CREATED      SIZE
 ghcr.io/seisscoped/adjtomo   workshop2022   6849be2bcfb8   3 days ago   5.56GB
