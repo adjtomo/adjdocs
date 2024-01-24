@@ -1,6 +1,8 @@
 # SPECFEM USERS (VIRTUAL) WORKSHOP
 ### October 5-7, 2022
 
+[Official workshop link](https://sites.google.com/alaska.edu/carltape/home/research/specfem2022?authuser=0)
+
 Material in this directory pertains to the SPECFEM User's workshop, held 
 virtually from October 5-7, 2022. Day 0 material (October 4) is used for 
 workshop and container testing.
