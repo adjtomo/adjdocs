@@ -4,7 +4,8 @@ Welcome! In this repository you will find SPECFEM/SeisFlows workshop material fo
 
 ## Docker Image Installation Instructions
 
-- The following instructions are meant to **install** a Docker Image, which contains all the software you will need to participate in the workshop. This assumes you have already installed Docker on your machine  
+- First you will need to install Docker: https://www.docker.com/get-started/ 
+- The following instructions are meant to **install** a Docker Image, which contains all the software you need to participate  
 - This Docker Image is ~3.98 GB, workshop material will create another ~1GB; please ensure you have sufficient disk space  
 - See the troubleshooting notes at the bottom for common issues you might encounter  
 - If you have any issues running the steps below that are not solved by the troubleshooting notes, feel free to open up a [GitHub issue](https://github.com/adjtomo/adjdocs/issues)
