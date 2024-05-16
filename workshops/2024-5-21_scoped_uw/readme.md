@@ -97,46 +97,17 @@ $ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/wo
 
 ![JupyterLab](https://user-images.githubusercontent.com/23055374/193501549-8f0d9429-1414-40c7-ad4d-0bdcf8ad6e55.png)
 
-### 5) Update adjDocs
-
-- To get the latest copy of the workshop material we will need to update adjDocs, our documentation repository
-- Please **double click** Terminal (`$_` icon in the 'Other' section) to open up the JupyterLab terminal  
-- Run the following commands inside the terminal to update adjDocs  
-
-```bash
-cd ~/adjdocs
-git pull
-```
-
-A successful 'git pull' should result in output that looks something like this:
-
-```bash
-# DO NOT COPY THE CODE BLOCK BELOW, it is just an example
-root@9613bff72a41:~/adjdocs# git pull
-remote: Enumerating objects: 345, done.
-remote: Counting objects: 100% (173/173), done.
-remote: Compressing objects: 100% (93/93), done.
-remote: Total 345 (delta 119), reused 120 (delta 80), pack-reused 172
-Receiving objects: 100% (345/345), 29.07 MiB | 22.27 MiB/s, done.
-Resolving deltas: 100% (204/204), completed with 11 local objects.
-From https://github.com/adjtomo/adjdocs
-   17378b6..77b2fe6  main       -> origin/main
-Updating 17378b6..77b2fe6
-Fast-forward
-...
-root@2579daf64918:~/adjdocs# 
-```
-
->__NOTE:__ If you have made any changes to the adjDocs repository, the `git pull` command may fail. The easiest way to resolve this is to stop your current container and start a new one. Alternatively you may run `git stash` to hide any changes you have made, before running `git pull`  
-
-### 6) Run Workshop Material
+### 5) Run Workshop Material
 
 - Using the navigation bar on the left, click through the following directories  
 - *adjdocs -> workshops -> 2024-05-21_scoped_uw*  
 - **Clicking** any of the workshop notebooks (e.g., *1_intro_specfem2d.ipynb*) will open a Jupyter Notebook  
 - See 'Jupyter Quick Tips' at the top of any notebook for information on how to run through a notebook  
 - Run cells one-by-one and sequentially, read along with text to follow workshop material  
-- If encounter any issues running the notebooks, please open up a [GitHub issue](https://github.com/adjtomo/adjdocs/issues)  
+
+---------------
+
+> Great! You are ready to run the workshop material, please follow along with the material in each of the notebooks. The material below is for when you are done with the workshop (Workshop Shut Down Procedures), or if you have trouble with any of the above install instructions (Troubleshooting Notes)
 
 ---------------
 
@@ -208,23 +179,7 @@ bchow@tern [~] $ docker rmi 3a6ddce01b76
 
 --------------
 
-
-### Docker Command Explanation
-
-```bash
-docker pull ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
-docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
-```
-
-- `docker pull` downloads the Docker Image from GitHub  
-- `docker run` launches the container. The flags in the `run` command are:  
-    -  `--mount`: binds our local filesystem (in the current working directory) with the **container's internal filesytem** (at location */home/scoped/work* which resides **inside** the container)  
-    -  `--shm-size`: tells Docker to give us 1 Gigabyte of shared memory, which is required for MPI processes  
-- Note that the *$(pwd)* argument may not be recognized by your operating system. If so, please see the troubleshooting notes below    
-- You may substitute any directory for *$(pwd)*, even remote filesystems, as long as they are accessible by your current machine  
-
-
-### Troubleshooting Notes
+## Troubleshooting Notes
 
 >__ERROR:__ $(pwd) not recognized in `docker run` command of Step 1  
 
@@ -265,7 +220,23 @@ systemctl start docker
 - **Note** that you will also have to change the web address that you open in your browser to the new port number (e.g., http://127.0.0.1:8889/lab...)  
 
 
-### Version Tracking
+## Docker Command Explanation
+
+```bash
+docker pull ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
+docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
+```
+
+- `docker pull` downloads the Docker Image from GitHub  
+- `docker run` launches the container. The flags in the `run` command are:  
+    -  `--mount`: binds our local filesystem (in the current working directory) with the **container's internal filesytem** (at location */home/scoped/work* which resides **inside** the container)  
+    -  `--shm-size`: tells Docker to give us 1 Gigabyte of shared memory, which is required for MPI processes  
+- Note that the *$(pwd)* argument may not be recognized by your operating system. If so, please see the troubleshooting notes below    
+- You may substitute any directory for *$(pwd)*, even remote filesystems, as long as they are accessible by your current machine  
+
+
+
+## Version Tracking
 Keeping track of versions used for the workshop. These will also be pinned to the container.
 
 - SPECFEM2D 8.1.0: baeb71d
