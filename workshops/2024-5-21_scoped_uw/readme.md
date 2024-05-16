@@ -1,12 +1,15 @@
-# Docker Image Installation Instructions
-For the [SCOPED UW Workshop](https://seisscoped.org/workshop-2024/) (May 20-24, 2024)
+# SCOPED Specfem/SeisFlows Workshop Material
+
+Welcome! In this repository you will find SPECFEM/SeisFlows workshop material for the [2024 SCOPED UW Workshop](https://seisscoped.org/workshop-2024/) to be held May 20-24, 2024. Here you will find the workshop notebooks and below you will find installation instructions for the Docker container that hosts the software needed for this material.
+
+## Docker Image Installation Instructions
 
 - The following instructions are meant to **install** a Docker Image, which contains all the software you will need to participate in the workshop. This assumes you have already installed Docker on your machine  
 - This Docker Image is ~3.98 GB, workshop material will create another ~1GB; please ensure you have sufficient disk space  
 - See the troubleshooting notes at the bottom for common issues you might encounter  
 - If you have any issues running the steps below that are not solved by the troubleshooting notes, feel free to open up a [GitHub issue](https://github.com/adjtomo/adjdocs/issues)
 
-## 0) Open a Terminal
+### 0) Open a Terminal
 - The commands in the following sections will need to be run from your computer's terminal program   
 - To open the terminal on your **local machine**: 
     - Mac: Type 'terminal' into Spotlight
@@ -14,26 +17,26 @@ For the [SCOPED UW Workshop](https://seisscoped.org/workshop-2024/) (May 20-24, 
     - Linux: Type 'terminal' in the system search bar
 
 
-## 1) Pull Docker Image
+### 1) Pull Docker Image
 
 - This will download the Docker Image from GitHub
 - Mac Intel Chip, Windows and Linux Users (AMD architecture) please follow instructions in 1A
 - Mac M1 Chip (ARM architecture) please follow instructions in 1B
 
 
-### 1A) Docker pull for Mac Intel, Windows, Linux
+#### 1A) Docker pull for Mac Intel, Windows, Linux
 ```bash
 docker pull --platform amd64 ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
 ```
 
-### 1B) Docker pull for Mac M1
+#### 1B) Docker pull for Mac M1
 
 Installs the Docker Image from GitHub
 ```bash
 docker pull --platform arm64 ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
 ```
 
-## 2) Make Empty Working Directory
+### 2) Make Empty Working Directory
 
 To save the results we obtain from inside our container, we will need to mount our local filesystem.  
 **> Please `cd` (change directory) to an empty working directory (example below)**  
@@ -45,14 +48,14 @@ mkdir -p ~/Work/specfem_users_workshop
 cd ~/Work/specfem_users_workshop
 ```
 
-## 3) Run Container
+### 3) Run Container
 
 Now run the container to open a JupyterLab instance (see notes below for explanation of this command)  
 ```bash
 docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
 ```
 
-## 4) Open JupyterLab 
+### 4) Open JupyterLab 
 
 - After running the `docker run` command, you will see some output that ends with a web address, e.g,.
 
@@ -87,7 +90,7 @@ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work
 
 ![JupyterLab](https://user-images.githubusercontent.com/23055374/193501549-8f0d9429-1414-40c7-ad4d-0bdcf8ad6e55.png)
 
-## 5) Update adjDocs
+### 5) Update adjDocs
 
 - To get the latest copy of the workshop material we will need to update adjDocs, our documentation repository
 - Please **double click** Terminal (`$_` icon in the 'Other' section) to open up the JupyterLab terminal  
@@ -119,7 +122,7 @@ root@2579daf64918:~/adjdocs#
 
 >__NOTE:__ If you have made any changes to the adjDocs repository, the `git pull` command may fail. The easiest way to resolve this is to stop your current container and start a new one. Alternatively you may run `git stash` to hide any changes you have made, before running `git pull`  
 
-## 6) Run Workshop Material
+### 6) Run Workshop Material
 
 - Using the navigation bar on the left, click through the following directories  
 - *adjdocs -> workshops -> 2024-05-21_scoped_uw*  
@@ -128,124 +131,11 @@ root@2579daf64918:~/adjdocs#
 - Run cells one-by-one and sequentially, read along with text to follow workshop material  
 - If encounter any issues running the notebooks, please open up a [GitHub issue](https://github.com/adjtomo/adjdocs/issues)  
 
-
---------------
-
-> If everything worked and you have successfully completed the steps above, congratulations! Please disregard everything below. If you are having trouble, please see the 'Troubleshooting Notes' section below.  
-
---------------
-
-## Docker Command Explanation
-
-```bash
-docker pull ghcr.io/seisscoped/adjtomo:workshop2022
-docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:workshop2022
-Hmm. We’re having trouble finding that site.
-
-We can’t connect to the server at www.google.com.
-
-If you entered the right address, you can:
-
-    Try again later
-    Check your network connection
-    Check that Firefox has permission to access the web (you might be connected but behind a firewall)
-
-
-```
-
-- `docker pull` downloads the Docker Image from GitHub  
-- `docker run` launches the container. The flags in the `run` command are:  
-    -  `--mount`: binds our local filesystem (in the current working directory) with the **container's internal filesytem** (at location */home/scoped/work* which resides **inside** the container)  
-    -  `--shm-size`: tells Docker to give us 1 Gigabyte of shared memory, which is required for MPI processes  
-- Note that the *$(pwd)* argument may not be recognized by your operating system. If so, please see the troubleshooting notes below    
-- You may substitute any directory for *$(pwd)*, even remote filesystems, as long as they are accessible by your current machine  
-
-
-## Troubleshooting Notes
-
->__ERROR:__ $(pwd) not recognized in `docker run` command of Step 1  
-
-- *$(pwd)* is a Linux command that might not be recognized by all operating systems  
-- Please change the *$(pwd)* to the full path to your current working directory, e.g.,
-
-```bash
-# Note that you will need to substitute <PATH_TO_WORKING_DIR> with your own path
-docker run -p 8888:8888 --mount type=bind,source=<PATH_TO_WORKING_DIR>,target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:workshop2022
-```
-
-for example on my own computer this might look like:  
-```bash
-# Do NOT copy-paste this, it is just an example and will not work on your computer
-docker run -p 8888:8888 --mount type=bind,source=/Users/Chow/Work/specfem_users_workshop,target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:workshop2022
-```
-
->__ERROR:__ *Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?*  
-
-- You need to start Docker or Docker Desktop on your machine. 
-- On **Windows or Mac**, use the search bar to find 'Docker' or 'Docker Desktop'. Open this program and try again  
-- On **Linux** try running:   
-```bash
-systemctl start docker
-```
-
->__ERROR:__ Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post "...": dial unix /var/run/docker.sock: connect: permission denied
-- Your user does not have the correct permission to access the Docker daemon
-- If you have root privelage on your machine, try running the following:
-```bash
- sudo chmod 666 /var/run/docker.sock
-```
-- You may also need to add your user to a Docker group which has the correct privileges ([see this link](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user))  
-
->__ERROR__: docker: Error response from daemon: driver failed programming external connectivity on endpoint hopeful_haslett (c3e93dc3530d474e5152cf7ec58d69030da2be534f47fc94bcc6da19177f60f4): Bind for 0.0.0.0:8888 failed: port is already allocated.
-- You likely have another task (e.g., Jupyter Notebooks) running on the port we are trying to specify (8888:8888)
-- Please change the port map to something else, e.g., *docker run -p 8889:8888*... and try again
-- **Note** that you will also have to change the web address that you open in your browser to the new port number (e.g., http://127.0.0.1:8889/lab...)  
-
-
-## Version Tracking
-Keeping track of versions used for the workshop. These will also be pinned to the container.
-
-- SPECFEM2D 8.1.0: baeb71d
-- SPEECFEM3D 4.1.1: ee3b095
-- SeisFlows v3.2.1: e96e888c
-- PySEP v0.6.0: 9e77ad3
-- Pyatoa v0.4.0: 1a6b86a
-
-
-
 ---------------
 
-# Workshop Startup Procedure
+## Workshop Shut Down Procedures
 
-- Please make sure Docker is **running** before executing the following instructions  
-- From your **local** machine, please run the following commands to **start** the Docker Container
-
-## 1) Start Docker Container
-You may replace the path given (*~/Work/specfem_users_workshop*) with any **empty** working directory of your choice
-```bash
-mkdir -p ~/Work/specfem_users_workshop
-cd ~/Work/specfem_users_workshop
-docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:workshop2022
-```
-
-Now please **open** the link starting with http://127.0.0.1:8888 in a web browser
-
-## 2) Update adjDocs
-
-- To get the latest copy of the workshop material we will need to update adjDocs, our documentation repository
-- Please **double click** Terminal (`$_` icon in the 'Other' section) to open up the JupyterLab terminal  
-- Run the following commands inside the terminal to update adjDocs  
-
-```bash
-cd ~/adjdocs
-git pull
-```
-
----------------
-
-# Workshop Shut Down Procedures
-
-- These instructions are for when you are finished with the workshop material and want to shut down the container and/or free up space    
+- These instructions are for when you are finished with the workshop and want to shut down the container and free up space    
 - Before you approach any of these shut down procedures, please be sure to save any work you might have created   
 - 'Created work' may include exercise notebooks that you filled out on your own, or files that you may have generated on your own  
 
@@ -300,9 +190,79 @@ docker rmi <IMAGE_ID>
 
 ```bash
 # DO NOT COPY THE CODE BLOCK BELOW, it is just an example
-bchow@tern [~] $ docker images
-REPOSITORY                   TAG            IMAGE ID       CREATED      SIZE
-ghcr.io/seisscoped/adjtomo   workshop2022   6849be2bcfb8   3 days ago   5.56GB
-bchow@tern [~] $ docker rmi 6849be2bcfb8
+REPOSITORY                   TAG                      IMAGE ID       CREATED         SIZE
+ghcr.io/seisscoped/adjtomo   ubuntu20.04_jupyterlab   3a6ddce01b76   20 hours ago    3.99GB
+bchow@tern [~] $ docker rmi 3a6ddce01b76
 ```
 
+--------------
+
+> If everything worked and you have successfully completed the steps above, congratulations! Please disregard everything below. If you are having trouble, please see the 'Troubleshooting Notes' section below.  
+
+--------------
+
+
+### Docker Command Explanation
+
+```bash
+docker pull ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
+docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
+```
+
+- `docker pull` downloads the Docker Image from GitHub  
+- `docker run` launches the container. The flags in the `run` command are:  
+    -  `--mount`: binds our local filesystem (in the current working directory) with the **container's internal filesytem** (at location */home/scoped/work* which resides **inside** the container)  
+    -  `--shm-size`: tells Docker to give us 1 Gigabyte of shared memory, which is required for MPI processes  
+- Note that the *$(pwd)* argument may not be recognized by your operating system. If so, please see the troubleshooting notes below    
+- You may substitute any directory for *$(pwd)*, even remote filesystems, as long as they are accessible by your current machine  
+
+
+### Troubleshooting Notes
+
+>__ERROR:__ $(pwd) not recognized in `docker run` command of Step 1  
+
+- *$(pwd)* is a Linux command that might not be recognized by all operating systems  
+- Please change the *$(pwd)* to the full path to your current working directory, e.g.,
+
+```bash
+# Note that you will need to substitute <PATH_TO_WORKING_DIR> with your own path
+docker run -p 8888:8888 --mount type=bind,source=<PATH_TO_WORKING_DIR>,target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
+```
+
+for example on my own computer this might look like:  
+```bash
+# Do NOT copy-paste this, it is just an example and will not work on your computer
+docker run -p 8888:8888 --mount type=bind,source=/Users/Chow/Work/specfem_users_workshop,target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
+```
+
+>__ERROR:__ *Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?*  
+
+- You need to start Docker or Docker Desktop on your machine. 
+- On **Windows or Mac**, use the search bar to find 'Docker' or 'Docker Desktop'. Open this program and try again  
+- On **Linux** try running:   
+```bash
+systemctl start docker
+```
+
+>__ERROR:__ Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post "...": dial unix /var/run/docker.sock: connect: permission denied
+- Your user does not have the correct permission to access the Docker daemon
+- If you have root privelage on your machine, try running the following:
+```bash
+ sudo chmod 666 /var/run/docker.sock
+```
+- You may also need to add your user to a Docker group which has the correct privileges ([see this link](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user))  
+
+>__ERROR__: docker: Error response from daemon: driver failed programming external connectivity on endpoint hopeful_haslett (c3e93dc3530d474e5152cf7ec58d69030da2be534f47fc94bcc6da19177f60f4): Bind for 0.0.0.0:8888 failed: port is already allocated.
+- You likely have another task (e.g., Jupyter Notebooks) running on the port we are trying to specify (8888:8888)
+- Please change the port map to something else, e.g., *docker run -p 8889:8888*... and try again
+- **Note** that you will also have to change the web address that you open in your browser to the new port number (e.g., http://127.0.0.1:8889/lab...)  
+
+
+### Version Tracking
+Keeping track of versions used for the workshop. These will also be pinned to the container.
+
+- SPECFEM2D 8.1.0: baeb71d
+- SPEECFEM3D 4.1.1: ee3b095
+- SeisFlows v3.2.1: e96e888c
+- PySEP v0.6.0: 9e77ad3
+- Pyatoa v0.4.0: 1a6b86a
