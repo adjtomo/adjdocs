@@ -62,28 +62,34 @@ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work
 
 ```bash
 # DO NOT COPY THE CODE BLOCK BELOW, it is just an example
-[bchow@blackbox specfem_users_workshop]$ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work ghcr.io/seisscoped/adjtomo:workshop2022           
-[I 2022-10-03 02:45:25.543 ServerApp] jupyterlab | extension was successfully linked.
-[I 2022-10-03 02:45:25.548 ServerApp] nbclassic | extension was successfully linked.
-[I 2022-10-03 02:45:25.549 ServerApp] Writing Jupyter server cookie secret to /home/scoped/.local/share/jupyter/runtime/jupyter_cookie_secret
-[I 2022-10-03 02:45:25.704 ServerApp] notebook_shim | extension was successfully linked.
-[I 2022-10-03 02:45:25.714 ServerApp] notebook_shim | extension was successfully loaded.
-[I 2022-10-03 02:45:25.715 LabApp] JupyterLab extension loaded from /opt/conda/lib/python3.10/site-packages/jupyterlab
-[I 2022-10-03 02:45:25.715 LabApp] JupyterLab application directory is /opt/conda/share/jupyter/lab
-[I 2022-10-03 02:45:25.717 ServerApp] jupyterlab | extension was successfully loaded.
-[I 2022-10-03 02:45:25.719 ServerApp] nbclassic | extension was successfully loaded.
-[I 2022-10-03 02:45:25.719 ServerApp] Serving notebooks from local directory: /home/scoped
-[I 2022-10-03 02:45:25.719 ServerApp] Jupyter Server 1.18.1 is running at:
-[I 2022-10-03 02:45:25.719 ServerApp] http://4196322a7bd0:8888/lab?token=864237545761973aa9f70fd458c19d40d6b3b52549dafc6e
-[I 2022-10-03 02:45:25.719 ServerApp]  or http://127.0.0.1:8888/lab?token=864237545761973aa9f70fd458c19d40d6b3b52549dafc6e
-[I 2022-10-03 02:45:25.719 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
-[C 2022-10-03 02:45:25.721 ServerApp] 
-    
+$ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
+[I 2024-05-16 15:59:20.338 ServerApp] jupyter_lsp | extension was successfully linked.
+[I 2024-05-16 15:59:20.341 ServerApp] jupyter_server_terminals | extension was successfully linked.
+[I 2024-05-16 15:59:20.343 ServerApp] jupyterlab | extension was successfully linked.
+[I 2024-05-16 15:59:20.346 ServerApp] notebook | extension was successfully linked.
+[I 2024-05-16 15:59:20.346 ServerApp] Writing Jupyter server cookie secret to /home/scoped/.local/share/jupyter/runtime/jupyter_cookie_secret
+[I 2024-05-16 15:59:20.518 ServerApp] notebook_shim | extension was successfully linked.
+[I 2024-05-16 15:59:20.529 ServerApp] notebook_shim | extension was successfully loaded.
+[I 2024-05-16 15:59:20.530 ServerApp] jupyter_lsp | extension was successfully loaded.
+[I 2024-05-16 15:59:20.530 ServerApp] jupyter_server_terminals | extension was successfully loaded.
+[I 2024-05-16 15:59:20.532 LabApp] JupyterLab extension loaded from /opt/conda/lib/python3.10/site-packages/jupyterlab
+[I 2024-05-16 15:59:20.532 LabApp] JupyterLab application directory is /opt/conda/share/jupyter/lab
+[I 2024-05-16 15:59:20.532 LabApp] Extension Manager is 'pypi'.
+[I 2024-05-16 15:59:20.539 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2024-05-16 15:59:20.540 ServerApp] notebook | extension was successfully loaded.
+[I 2024-05-16 15:59:20.541 ServerApp] Serving notebooks from local directory: /home/scoped
+[I 2024-05-16 15:59:20.541 ServerApp] Jupyter Server 2.14.0 is running at:
+[I 2024-05-16 15:59:20.541 ServerApp] http://c80bdafc9ee2:8888/lab?token=6e70b595bd7d62bde09db852053971b28f2f012574ca0a95
+[I 2024-05-16 15:59:20.541 ServerApp]     http://127.0.0.1:8888/lab?token=6e70b595bd7d62bde09db852053971b28f2f012574ca0a95
+[I 2024-05-16 15:59:20.541 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 2024-05-16 15:59:20.543 ServerApp]
+
     To access the server, open this file in a browser:
-        file:///home/scoped/.local/share/jupyter/runtime/jpserver-13-open.html
+        file:///home/scoped/.local/share/jupyter/runtime/jpserver-8-open.html
     Or copy and paste one of these URLs:
-        http://4196322a7bd0:8888/lab?token=864237545761973aa9f70fd458c19d40d6b3b52549dafc6e
-     or http://127.0.0.1:8888/lab?token=864237545761973aa9f70fd458c19d40d6b3b52549dafc6e
+        http://c80bdafc9ee2:8888/lab?token=6e70b595bd7d62bde09db852053971b28f2f012574ca0a95
+        http://127.0.0.1:8888/lab?token=6e70b595bd7d62bde09db852053971b28f2f012574ca0a95
+[I 2024-05-16 15:59:20.806 ServerApp] Skipped non-installed server(s): bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server
 ```
 
 - Please **open** the bottom link (starting with http://127.0.0.1:8888) with a web browser
