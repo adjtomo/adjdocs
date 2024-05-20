@@ -52,8 +52,8 @@ To save the results we obtain from inside our container, we will need to mount o
 ```bash
 # NOTE: This is only an EXAMPLE code snippet. Please create an 
 # appropriate empty working directory on your machine
-mkdir -p ~/Work/specfem_users_workshop
-cd ~/Work/specfem_users_workshop
+mkdir -p ~/Work/scoped_uw_2024
+cd ~/Work/scoped_uw_2024
 ```
 
 ### 5) Run Container
