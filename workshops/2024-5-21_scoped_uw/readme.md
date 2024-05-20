@@ -29,8 +29,8 @@ systemctl start docker
 ### 3) Pull Docker Image
 
 - This will download the Docker Image from GitHub
-- Mac Intel Chip, Windows and Linux Users (AMD architecture) please follow instructions in 1A
-- Mac Silicon Chip (ARM architecture; M1, M2, M3...) please follow instructions in 1B
+- Mac Intel Chip, Windows and Linux Users (AMD architecture) please follow instructions in A
+- Mac Silicon Chip (ARM architecture; M1, M2, M3...) please follow instructions in B
 
 #### 3A) Docker pull for Mac Intel, Windows, Linux
 ```bash
