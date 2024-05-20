@@ -10,34 +10,41 @@ Welcome! In this repository you will find SPECFEM/SeisFlows workshop material fo
 - See the troubleshooting notes at the bottom for common issues you might encounter  
 - If you have any issues running the steps below that are not solved by the troubleshooting notes, feel free to open up a [GitHub issue](https://github.com/adjtomo/adjdocs/issues)
 
-### 0) Open a Terminal
+### 1) Open a Terminal
 - The commands in the following sections will need to be run from your computer's terminal program   
 - To open the terminal on your **local machine**: 
     - Mac: Type 'terminal' into Spotlight
     - Windows: Type 'powershell' in the system search bar
     - Linux: Type 'terminal' in the system search bar
 
+### 2) Start Docker
+- Docker will need to be running in the background before we can use from the command line
+- On **Windows or Mac**, use the search bar to find 'Docker' or 'Docker Desktop'. Open this program and try again
+- On **Linux** try running the following from the command line:
+```bash
+systemctl start docker
+```
 
-### 1) Pull Docker Image
+
+### 3) Pull Docker Image
 
 - This will download the Docker Image from GitHub
 - Mac Intel Chip, Windows and Linux Users (AMD architecture) please follow instructions in 1A
-- Mac M1 Chip (ARM architecture) please follow instructions in 1B
+- Mac Silicon Chip (ARM architecture; M1, M2, M3...) please follow instructions in 1B
 
-
-#### 1A) Docker pull for Mac Intel, Windows, Linux
+#### 3A) Docker pull for Mac Intel, Windows, Linux
 ```bash
 docker pull --platform amd64 ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
 ```
 
-#### 1B) Docker pull for Mac M1
+#### 3B) Docker pull for Mac Silicon 
 
 Installs the Docker Image from GitHub
 ```bash
 docker pull --platform arm64 ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
 ```
 
-### 2) Make Empty Working Directory
+### 4) Make Empty Working Directory
 
 To save the results we obtain from inside our container, we will need to mount our local filesystem.  
 **> Please `cd` (change directory) to an empty working directory (example below)**  
@@ -49,14 +56,14 @@ mkdir -p ~/Work/specfem_users_workshop
 cd ~/Work/specfem_users_workshop
 ```
 
-### 3) Run Container
+### 5) Run Container
 
 Now run the container to open a JupyterLab instance (see notes below for explanation of this command)  
 ```bash
 docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/work --shm-size=1gb ghcr.io/seisscoped/adjtomo:ubuntu20.04_jupyterlab
 ```
 
-### 4) Open JupyterLab 
+### 6) Open JupyterLab 
 
 - After running the `docker run` command, you will see some output that ends with a web address, e.g,.
 
@@ -97,7 +104,7 @@ $ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/wo
 
 ![JupyterLab](https://user-images.githubusercontent.com/23055374/193501549-8f0d9429-1414-40c7-ad4d-0bdcf8ad6e55.png)
 
-### 5) Run Workshop Material
+### 7) Run Workshop Material
 
 - Using the navigation bar on the left, click through the following directories  
 - *adjdocs -> workshops -> 2024-05-21_scoped_uw*  
