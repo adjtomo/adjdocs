@@ -18,9 +18,9 @@ Welcome! In this repository you will find SPECFEM/SeisFlows workshop material fo
     - Linux: Type 'terminal' in the system search bar
 
 ### 2) Start Docker
-- Docker will need to be running in the background before we can use from the command line
-- On **Windows or Mac**, use the search bar to find 'Docker' or 'Docker Desktop'. Open this program and try again
-- On **Linux** try running the following from the command line:
+- Docker will need to be running in the background before we can use it from the command line
+- On **Windows or Mac**, use the search bar to find and open `Docker` `Docker.app` or `Docker Desktop`
+- On **Linux**, run the following from the command line:
 ```bash
 systemctl start docker
 ```
@@ -28,7 +28,7 @@ systemctl start docker
 
 ### 3) Pull Docker Image
 
-- This will download the Docker Image from GitHub
+- This will download the Docker Image from the SeisSCOPED GitHub repository
 - Mac Intel Chip, Windows and Linux Users (AMD architecture) please follow instructions in A
 - Mac Silicon Chip (ARM architecture; M1, M2, M3...) please follow instructions in B
 
