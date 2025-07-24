@@ -52,8 +52,8 @@ To save the results we obtain from inside our container, we will need to mount o
 ```bash
 # NOTE: This is only an EXAMPLE code snippet. Please create an 
 # appropriate empty working directory on your machine
-mkdir -p ~/Work/scoped_uw_2024
-cd ~/Work/scoped_uw_2024
+mkdir -p ~/Work/cig_tng_2025
+cd ~/Work/cig_tng_2025
 ```
 
 ### 5) Run Container
@@ -107,7 +107,7 @@ $ docker run -p 8888:8888 --mount type=bind,source=$(pwd),target=/home/scoped/wo
 ### 7) Run Workshop Material
 
 - Using the navigation bar on the left, click through the following directories  
-- *adjdocs -> workshops -> 2024-05-21_scoped_uw*  
+- *adjdocs -> workshops -> 2025-08-04_cig-tng*  
 - **Clicking** any of the workshop notebooks (e.g., *1_intro_specfem2d.ipynb*) will open a Jupyter Notebook  
 - See 'Jupyter Quick Tips' at the top of any notebook for information on how to run through a notebook  
 - Run cells one-by-one and sequentially, read along with text to follow workshop material  
